@@ -1,0 +1,10 @@
+Provide a www interface to easily change UNIX / Samba passwords.
+
+Requires: perl CGI, DBI, mysql-server.
+
+To create the database:
+
+mysql -e "CREATE DATABASE updatepasswords
+mysql -e "CREATE TABLE requests (ip_address varchar(32) NOT NULL default '0', user_name text NOT NULL)" updatepasswords
+mysql -e "CREATE USER 'www-data'@'locahost' IDENTIFIED BY 'TO_DEFINE'"
+mysql -e "GRANT ALL ON updatepasswords.* TO 'www-data'@'localhost'"
