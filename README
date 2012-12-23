@@ -1,4 +1,5 @@
-Provide a www interface to easily change UNIX / Samba passwords.
+Provide a www interface to easily change UNIX / Samba passwords and watch Wifi connections.
+See http://yeupou.wordpress.com/2012/12/23/setting-up-a-silentlow-energy-consumption-home-server-dhcpdnssmbupnp/
 
 Requires: perl CGI, DBI, mysql-server.
 
