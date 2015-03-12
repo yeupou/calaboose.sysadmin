@@ -1,5 +1,7 @@
 Provide a www interface to easily change UNIX / Samba passwords and watch Wifi connections.
-See http://yeupou.wordpress.com/2012/12/23/setting-up-a-silentlow-energy-consumption-home-server-dhcpdnssmbupnp/
+More details: http://yeupou.wordpress.com/2012/12/23/setting-up-a-silentlow-energy-consumption-home-server-dhcpdnssmbupnp/
+It's provided as Debian package:
+and https://yeupou.wordpress.com/2015/03/12/resetting-samba-password-and-monitoring-wifi-via-a-web-interface/
 
 Requires: perl CGI, DBI, mysql-server.
 
@@ -11,3 +13,4 @@ mysql -e "CREATE TABLE wificlients (hw_address varchar(32) NOT NULL default '0',
 mysql -e "CREATE USER 'www-data'@'localhost'"
 mysql -e "SET PASSWORD FOR 'www-data'@'localhost' = PASSWORD('kdkadkda')"
 mysql -e "GRANT ALL ON sysadmin.* TO 'www-data'@'localhost'"
+
