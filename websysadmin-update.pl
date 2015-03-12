@@ -17,6 +17,8 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 #   USA
+#
+#  See https://yeupou.wordpress.com/2015/03/12/resetting-samba-password-and-monitoring-wifi-via-a-web-interface/
 
 use strict;
 use DBI;
