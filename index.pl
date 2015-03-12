@@ -25,10 +25,23 @@ use Net::Domain qw(hostdomain);
 use URI::Encode qw(uri_encode);
 use Data::Password qw(:all);
 
+# default
 my $db_password = "kdkadkda";
-my $wlan = "wlan1";
+my $wlan = "";
 my $wlan_deny = "/etc/hostapd/hostapd.deny";
 my $wlan_conf = "/etc/hostapd/hostapd.conf";
+
+# system config
+my $rc = "/etc/websysadminrc";
+die "Unable to read $rc. We need database password (db_password) to be set, exiting" unless -r $rc;
+open(RCFILE, "< $rc");
+while(<RCFILE>){
+    $db_password = $1 if /^db_password\s?=\s?(\S*)\s*$/i;
+    $wlan= $1 if /^wlan\s?=\s?(\S*)\s*$/i;
+    $wlan_deny = $1 if /^wlan_deny\s?=\s?(\S*)\s*$/i;
+    $wlan_conf = $1 if /^wlan_conf\s?=\s?(\S*)\s*$/i;
+}
+close(RCFILE);
 
 # database connect
 my $dbd =DBI->connect('DBI:mysql:database=sysadmin:host=localhost',

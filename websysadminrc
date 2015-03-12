@@ -1,6 +1,6 @@
 # MySQL database password
 db_password = password
-# wifi setup
+# wifi setup - comment out if you dont have hostapd running
 wlan = wlan1
 wlan_deny = /etc/hostapd/hostapd.deny
 wlan_conf = /etc/hostapd/hostapd.conf

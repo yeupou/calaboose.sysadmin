@@ -5,7 +5,9 @@ Requires: perl CGI, DBI, mysql-server.
 
 To create the database:
 
-mysql -e "CREATE DATABASE updatepasswords
-mysql -e "CREATE TABLE requests (ip_address varchar(32) NOT NULL default '0', user_name text NOT NULL)" updatepasswords
-mysql -e "CREATE USER 'www-data'@'locahost' IDENTIFIED BY 'TO_DEFINE'"
-mysql -e "GRANT ALL ON updatepasswords.* TO 'www-data'@'localhost'"
+mysql -e "CREATE DATABASE sysadmin"
+mysql -e "CREATE TABLE sambaclients (ip_address varchar(32) NOT NULL default '0', user_name text NOT NULL, PRIMARY KEY (ip_address))" sysadmin
+mysql -e "CREATE TABLE wificlients (hw_address varchar(32) NOT NULL default '0', status varchar(32) NOT NULL default 'S', PRIMARY KEY (hw_address), ip_address varchar(32), hostname varchar(128))" sysadmin
+mysql -e "CREATE USER 'www-data'@'localhost'"
+mysql -e "SET PASSWORD FOR 'www-data'@'localhost' = PASSWORD('kdkadkda')"
+mysql -e "GRANT ALL ON sysadmin.* TO 'www-data'@'localhost'"

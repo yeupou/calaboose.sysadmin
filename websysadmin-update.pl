@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# Copyright (c) 2012 Mathieu Roy <yeupou--gnu.org>
+# Copyright (c) 2012-2015 Mathieu Roy <yeupou--gnu.org>
 # http://yeupou.wordpress.com
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@ use Mail::Send;
 
 # default
 my $db_password = "kdkadkda";
-my $wlan = "wlan1";
+my $wlan = "";
 my $wlan_deny = "/etc/hostapd/hostapd.deny";
 my $wlan_conf = "/etc/hostapd/hostapd.conf";
 
@@ -84,6 +84,9 @@ $hop->finish;
 # cLeanup database
 $dbd->do("DELETE FROM sambaclients");
 
+
+# finish here is no wifi is set up
+exit if $wlan eq "";
 
 ## Wifi
 # get the list of connected wifi clients
