@@ -3,7 +3,9 @@ More details: http://yeupou.wordpress.com/2012/12/23/setting-up-a-silentlow-ener
 It's provided as Debian package:
 and https://yeupou.wordpress.com/2015/03/12/resetting-samba-password-and-monitoring-wifi-via-a-web-interface/
 
-Requires: perl CGI, DBI, mysql-server.
+Requires: perl CGI, DBI, Net::Domain, URI::Encode, Data::Password, Imager::QRCode and mariadb/mysql
+
+It requires that www-data (or whatever http server username is get write access in the directory the script is installed) in order to generate wifi QRcode.
 
 To create the database:
 

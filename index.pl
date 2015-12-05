@@ -28,6 +28,7 @@ use CGI::Carp;
 use Net::Domain qw(hostdomain); 
 use URI::Encode qw(uri_encode);
 use Data::Password qw(:all);
+use Imager::QRCode;
 
 # default
 my $db_password = "kdkadkda";
@@ -121,10 +122,25 @@ print h2("Connexions wifi :");
 
 # find wifi pass
 open(WLAN_CONF, "< $wlan_conf");
-my $wlan_pass;
-while(<WLAN_CONF>) { $wlan_pass = $1 if /^wpa_passphrase=(.*)$/; }
+my ($wlan_pass, $wlan_ssid);
+while(<WLAN_CONF>) { 
+    $wlan_pass = $1 if /^wpa_passphrase=(.*)$/; 
+    $wlan_ssid = $1 if /^ssid=(.*)$/;
+}
 close (WLAN_CONF);
+
+# show it in text and qrcode
 print p("Le mot de passe wifi ".em("($wlan_conf)")." est $wlan_pass");
+my $qrcode = Imager::QRCode->new(
+    casesensitive => 1,
+    lightcolor    => Imager::Color->new(255, 255, 255),
+    darkcolor     => Imager::Color->new(0, 0, 0),
+    );
+# qrcode https://code.google.com/p/zxing/wiki/BarcodeContents
+my $img = $qrcode->plot("WIFI:T:WPA;S:$wlan_ssid;P:$wlan_pass;;");
+$img->write(file => "wifi.png");
+print img({-src=>"wifi.png"});
+
 # assess strenght
 $MINLEN = 50;
 $MAXLEN = 63;

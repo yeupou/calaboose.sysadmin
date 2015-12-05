@@ -1,1 +1,1 @@
-* * * * * root /usr/local/bin/websysadmin-update.pl
+* * * * * root /usr/local/bin/websysadmin-update.pl 2>/dev/null
